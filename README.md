@@ -76,3 +76,23 @@ java -jar client.jar <hostname1> <port1> <hostname2> <port2> <hostname3> <port3>
 - Client output example:
 
   ![ScreenShot](./res/docs/client-output.PNG)
+
+## Assumption:
+
+Assume the coordinator will never crash.
+
+Servers can crash at any phase of a transaction and if a server crash, it will throw a RemoteException. No fake death or any Byzantine problem.
+
+Level 1 crash recovery (present the test in video).
+
+Crash recovery will only be triggered when the server is absent in transactions, if no transactions occurred, the server crash and reconnect to the coordinator will not trigger the data synchronization.
+
+## Limitation:
+
+Client needs exactly five servers start first, then it is able to run.
+
+Client needs to be manually restarted to reconnect with a crash server. Because server will lose the information of the client after its process shutdown. Client can detect and give notification to user if the connected server is down, but it needs the client to call the server API, then it will be triggered because the RemoteException is caught. No dynamic detection.
+
+Server will lose data and client information because the database is an object instance in the server rather than an individual server.
+
+Data recovery will recover all transactions' data since the coordinator started and recorded, cannot work on a single data roll back instead all data to keep consistent with other servers.
