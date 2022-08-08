@@ -1,8 +1,5 @@
 # Multi-threaded-Key-Value-Store-using-RPC-Two-Phase-Commit-Transaction
 
-# Guidelines 
-Project #3 should be electronically submitted to Blackboard by midnight on the due date.  A submission 
-link is provided on the course BB page. 
  
 # Assignment Overview 
 For this project, you will extend Project #2 in two distinct ways. 
